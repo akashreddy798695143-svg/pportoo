@@ -1,0 +1,418 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-glow-purple: #a855f7;
+  --color-glow-purple-soft: #c084fc;
+  --color-glow-cyan: #22d3ee;
+  --color-glow-cyan-soft: #67e8f9;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #080808;
+  --foreground: #f4f4f5;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #f4f4f5;
+  --popover: #0c0c0e;
+  --popover-foreground: #f4f4f5;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e4e4e7;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #a1a1aa;
+  --accent: rgba(168, 85, 247, 0.12);
+  --accent-foreground: #d8b4fe;
+  --destructive: #f43f5e;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #a855f7;
+  --chart-1: #a855f7;
+  --chart-2: #22d3ee;
+  --chart-3: #c084fc;
+  --chart-4: #67e8f9;
+  --chart-5: #7c3aed;
+  --sidebar: rgba(255, 255, 255, 0.03);
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-primary: #a855f7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(168, 85, 247, 0.12);
+  --sidebar-accent-foreground: #d8b4fe;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #a855f7;
+}
+
+/* Single (dark) theme site — mirror the same tokens under .dark */
+.dark {
+  --radius: 0.75rem;
+  --background: #080808;
+  --foreground: #f4f4f5;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #f4f4f5;
+  --popover: #0c0c0e;
+  --popover-foreground: #f4f4f5;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e4e4e7;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #a1a1aa;
+  --accent: rgba(168, 85, 247, 0.12);
+  --accent-foreground: #d8b4fe;
+  --destructive: #f43f5e;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #a855f7;
+  --chart-1: #a855f7;
+  --chart-2: #22d3ee;
+  --chart-3: #c084fc;
+  --chart-4: #67e8f9;
+  --chart-5: #7c3aed;
+  --sidebar: rgba(255, 255, 255, 0.03);
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-primary: #a855f7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(168, 85, 247, 0.12);
+  --sidebar-accent-foreground: #d8b4fe;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #a855f7;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: clip;
+  }
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+  ::selection {
+    background: rgba(168, 85, 247, 0.35);
+    color: #ffffff;
+  }
+  :focus-visible {
+    outline: 2px solid rgba(168, 85, 247, 0.65);
+    outline-offset: 2px;
+  }
+}
+
+/* ------------------------------ scrollbar ------------------------------ */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #22d3ee);
+  border-radius: 999px;
+  border: 2px solid #0a0a0c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a855f7, #22d3ee);
+}
+html {
+  scrollbar-color: #7c3aed #0a0a0c;
+  scrollbar-width: thin;
+}
+
+/* --------------------------- custom cursor ----------------------------- */
+/* The CustomCursor component adds `custom-cursor` to <body> only when a
+   fine pointer (mouse) is available. Native cursor is preserved on text
+   fields, and fully restored via `.cursor-hidden` while over inputs. */
+@media (pointer: fine) {
+  body.custom-cursor,
+  body.custom-cursor a,
+  body.custom-cursor button,
+  body.custom-cursor [role="button"],
+  body.custom-cursor summary {
+    cursor: none;
+  }
+  body.custom-cursor input,
+  body.custom-cursor textarea {
+    cursor: text;
+  }
+  body.custom-cursor select,
+  body.custom-cursor label {
+    cursor: pointer;
+  }
+  body.custom-cursor.cursor-hidden,
+  body.custom-cursor.cursor-hidden a,
+  body.custom-cursor.cursor-hidden button,
+  body.custom-cursor.cursor-hidden [role="button"],
+  body.custom-cursor.cursor-hidden input,
+  body.custom-cursor.cursor-hidden textarea,
+  body.custom-cursor.cursor-hidden select,
+  body.custom-cursor.cursor-hidden label {
+    cursor: auto;
+  }
+}
+
+/* ------------------------------ keyframes ------------------------------ */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-22px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-12px);
+  }
+}
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+@keyframes gradientPan {
+  to {
+    background-position: 200% center;
+  }
+}
+@keyframes caretBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes scrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes borderSpin {
+  to {
+    --angle: 360deg;
+  }
+}
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+/* ------------------------------ utilities ------------------------------ */
+.text-gradient {
+  background-image: linear-gradient(100deg, #f5f3ff 0%, #c084fc 28%, #a855f7 55%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-cyan {
+  background-image: linear-gradient(100deg, #67e8f9 0%, #22d3ee 45%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.animate-gradient {
+  background-size: 220% auto;
+  animation: gradientPan 6s linear infinite;
+}
+
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-strong {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+}
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 25%, transparent 78%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.card-glow {
+  transition:
+    transform 0.45s cubic-bezier(0.21, 0.47, 0.32, 0.98),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.card-glow:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.25),
+    0 24px 60px -24px rgba(168, 85, 247, 0.45),
+    0 10px 34px -14px rgba(34, 211, 238, 0.28);
+}
+
+/* Rotating conic gradient border (visible on hover or always via .always) */
+.animated-border {
+  position: relative;
+}
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    rgba(168, 85, 247, 0.9) 10%,
+    rgba(34, 211, 238, 0.9) 22%,
+    transparent 38%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  animation: borderSpin 4.5s linear infinite;
+  pointer-events: none;
+}
+.animated-border:hover::before,
+.animated-border.always::before {
+  opacity: 1;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.shimmer:hover::after {
+  animation: shimmer 0.9s ease;
+}
+
+/* Editable placeholder values (e.g. "[College Name]") — dashed underline */
+.placeholder-edit {
+  border-bottom: 1px dashed rgba(192, 132, 252, 0.45);
+  cursor: help;
+}
+
+/* --------------------------- reduced motion ----------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
