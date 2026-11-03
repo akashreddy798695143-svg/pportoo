@@ -33,11 +33,11 @@ export const siteConfig = {
     { value: "3", label: "Internships completed" },
     { value: "9", label: "Technical skills" },
   ],
-  email: "your.email@example.com",
+  email: "akashreddy798695143@gmail.com",
   /** ✏️ EDIT: your GitHub profile URL */
-  github: "https://github.com/your-username",
+  github: "https://github.com/akashreddy798695143-svg",
   /** ✏️ EDIT: your LinkedIn profile URL */
-  linkedin: "https://www.linkedin.com/in/your-username",
+  linkedin: "https://www.linkedin.com/in/akash-reddy-a844582a9",
   /**
    * ✏️ EDIT (optional): put `resume.pdf` inside the /public folder and set
    * this to "/resume.pdf" to enable the Download Resume button. While it is
