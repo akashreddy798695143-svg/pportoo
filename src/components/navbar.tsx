@@ -6,6 +6,7 @@
  */
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/portfolio";
@@ -71,8 +72,14 @@ export default function Navbar() {
           className="group flex items-center gap-3"
           aria-label={`${siteConfig.name} — back to top`}
         >
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-fuchsia-500 to-cyan-500 font-display text-sm font-bold tracking-wide text-white shadow-[0_0_22px_rgba(168,85,247,0.45)] transition-shadow duration-300 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.55)]">
-            {siteConfig.initials}
+          <span className="relative h-9 w-9 overflow-hidden rounded-full shadow-[0_0_18px_rgba(168,85,247,0.45)] ring-2 ring-purple-400/50 transition-shadow duration-300 group-hover:ring-cyan-400/60">
+            <Image
+              src="/images/profile.jpg"
+              alt=""
+              width={36}
+              height={36}
+              className="object-cover object-top"
+            />
           </span>
           <span className="hidden font-display text-lg font-semibold tracking-tight text-white sm:block">
             {siteConfig.name}

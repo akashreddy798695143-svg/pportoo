@@ -6,6 +6,7 @@
  */
 
 import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 import { navLinks, siteConfig } from "@/data/portfolio";
 
 export default function Footer() {
@@ -30,8 +31,14 @@ export default function Footer() {
           {/* brand */}
           <div>
             <a href="#home" className="inline-flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-fuchsia-500 to-cyan-500 font-display text-sm font-bold text-white shadow-[0_0_22px_rgba(168,85,247,0.4)]">
-                {siteConfig.initials}
+              <span className="relative h-10 w-10 overflow-hidden rounded-full shadow-[0_0_22px_rgba(168,85,247,0.4)] ring-2 ring-purple-400/50">
+                <Image
+                  src="/images/profile.jpg"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="object-cover object-top"
+                />
               </span>
               <span className="font-display text-xl font-semibold tracking-tight text-white">
                 {siteConfig.name}

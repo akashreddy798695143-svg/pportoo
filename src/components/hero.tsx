@@ -8,6 +8,7 @@
 
 import { Suspense, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import {
   motion,
   useScroll,
@@ -22,7 +23,7 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
-import { siteConfig } from "@/data/portfolio";
+import { about, siteConfig } from "@/data/portfolio";
 import Magnetic from "@/components/magnetic";
 import { useToast } from "@/hooks/use-toast";
 
@@ -31,21 +32,6 @@ const HeroScene = dynamic(() => import("@/components/three/hero-scene"), {
   ssr: false,
   loading: () => null,
 });
-
-const nameVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.045, delayChildren: 0.45 } },
-};
-
-const letterVariants: Variants = {
-  hidden: { opacity: 0, y: 42, rotateX: -70 },
-  show: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
-  },
-};
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -56,11 +42,24 @@ const fadeUp: Variants = {
   }),
 };
 
+/** Split the name into words that wrap at word boundaries only. */
+function useLetterSteps() {
+  return useMemo(() => {
+    const words = siteConfig.name.split(" ");
+    return words.map((word, i) => ({
+      word,
+      start: words
+        .slice(0, i)
+        .reduce((acc, prev) => acc + prev.length + 1, 0),
+    }));
+  }, []);
+}
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const { toast } = useToast();
 
-  const letters = useMemo(() => siteConfig.name.split(""), []);
+  const letterSteps = useLetterSteps();
 
   /* Parallax fade as the hero scrolls away */
   const { scrollYProgress } = useScroll({
@@ -144,9 +143,15 @@ export default function Hero() {
             custom={0.1}
           >
             <span className="inline-flex items-center gap-2.5 rounded-full glass px-4 py-2 font-mono text-[11px] tracking-[0.18em] text-zinc-300 sm:text-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+              <span className="relative h-6 w-6 overflow-hidden rounded-full ring-1 ring-purple-400/60">
+                <Image
+                  src={about.profileImage}
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="object-cover object-top"
+                  priority
+                />
               </span>
               AVAILABLE FOR OPPORTUNITIES
             </span>
@@ -165,21 +170,46 @@ export default function Hero() {
             </motion.span>
 
             <motion.span
-              variants={nameVariants}
+              variants={fadeUp}
               initial="hidden"
               animate="show"
+              custom={0.4}
               aria-label={siteConfig.name}
-              className="mt-4 block font-display text-5xl font-extrabold leading-[1.04] tracking-tight sm:text-7xl lg:text-8xl"
+              className="mt-4 block font-display text-5xl font-extrabold leading-[1.06] tracking-tight sm:text-7xl lg:text-8xl"
             >
-              {letters.map((char, i) => (
-                <motion.span
-                  key={`${char}-${i}`}
-                  variants={letterVariants}
+              {letterSteps.map(({ word, start }, wi) => (
+                <span
+                  key={`${word}-${wi}`}
                   aria-hidden
-                  className="text-gradient animate-gradient inline-block whitespace-pre will-change-transform"
+                  className="inline-block whitespace-nowrap"
                 >
-                  {char}
-                </motion.span>
+                  {word.split("").map((char, ci) => (
+                    <motion.span
+                      key={`${char}-${ci}`}
+                      initial={{ opacity: 0, y: 42, rotateX: -70 }}
+                      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                      transition={{
+                        duration: 0.7,
+                        delay: 0.5 + (start + ci) * 0.04,
+                        ease: [0.21, 0.47, 0.32, 0.98],
+                      }}
+                      className="text-gradient animate-gradient inline-block will-change-transform"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {wi < letterSteps.length - 1 ? (
+                    <motion.span
+                      aria-hidden
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5 + (start + word.length) * 0.04 }}
+                      className="inline-block"
+                    >
+                      &nbsp;
+                    </motion.span>
+                  ) : null}
+                </span>
               ))}
             </motion.span>
           </h1>

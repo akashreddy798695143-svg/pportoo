@@ -5,7 +5,7 @@
  * alternating card layout on desktop, single column on mobile.
  */
 
-import { GraduationCap, School, MapPin, CalendarDays } from "lucide-react";
+import { GraduationCap, School, MapPin, CalendarDays, TrendingUp } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { education } from "@/data/portfolio";
 import { SectionHeading } from "@/components/section-heading";
@@ -50,7 +50,8 @@ export default function Education() {
           {education.map((item, i) => {
             const Icon = timelineIcons[item.icon] ?? GraduationCap;
             const left = i % 2 === 0;
-            const isPlaceholder = item.org.startsWith("[") || item.period.startsWith("[");
+            const isPlaceholder =
+              item.org.startsWith("[") || (item.period ?? "").startsWith("[");
 
             return (
               <li key={item.title} className="relative pb-12 last:pb-0 md:pb-16">
@@ -82,17 +83,27 @@ export default function Education() {
                       <span className="grid h-12 w-12 place-items-center rounded-xl border border-purple-400/25 bg-gradient-to-br from-purple-500/15 to-cyan-500/10 text-purple-300">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span
-                        className={cn(
-                          "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] tracking-wider",
-                          item.current
-                            ? "border border-cyan-400/35 bg-cyan-500/10 text-cyan-300"
-                            : "border border-white/10 bg-white/[0.04] text-zinc-400"
-                        )}
-                      >
-                        <CalendarDays className="h-3 w-3" />
-                        {item.period}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {item.period ? (
+                        <span
+                          className={cn(
+                            "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] tracking-wider",
+                            item.current
+                              ? "border border-cyan-400/35 bg-cyan-500/10 text-cyan-300"
+                              : "border border-white/10 bg-white/[0.04] text-zinc-400"
+                          )}
+                        >
+                          <CalendarDays className="h-3 w-3" />
+                          {item.period}
+                        </span>
+                      ) : null}
+                      {item.score ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 font-mono text-[11px] font-semibold tracking-wider text-amber-300">
+                          <TrendingUp className="h-3 w-3" />
+                          {item.score}
+                        </span>
+                      ) : null}
+                    </div>
                     </div>
 
                     <h3 className="mt-5 font-display text-xl font-bold text-white sm:text-2xl">

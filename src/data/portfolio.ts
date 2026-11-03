@@ -16,9 +16,9 @@
 
 export const siteConfig = {
   /** ✏️ EDIT: your full name (shown in the hero, nav, footer, SEO) */
-  name: "[Your Name]",
+  name: "Baksham Akash Reddy",
   /** ✏️ EDIT: your initials (used for the logo monogram) */
-  initials: "YN",
+  initials: "BA",
   /** ✏️ EDIT: your public site URL (used for SEO metadata) */
   url: "https://your-portfolio.vercel.app",
   role: "Full Stack Developer | AI Enthusiast | Creative Problem Solver",
@@ -41,6 +41,8 @@ export const siteConfig = {
 /* ─────────────────────────────── About ──────────────────────────────── */
 
 export const about = {
+  /** Professional portrait shown with a 3D animated frame in the About section */
+  profileImage: "/images/profile.jpg",
   intro:
     "I am a passionate developer interested in building modern web applications and AI-powered solutions. I enjoy solving problems, learning new technologies, and creating meaningful digital experiences.",
   highlights: [
@@ -134,8 +136,6 @@ export interface Project {
   title: string;
   tagline: string;
   description: string;
-  /** Path inside /public */
-  image: string;
   tags: string[];
   liveUrl: string;
   /** GitHub button only renders when a real link is provided. ✏️ EDIT */
@@ -149,7 +149,6 @@ export const projects: Project[] = [
     tagline: "AI-Assisted Autonomous Disaster Coordination Platform",
     description:
       "An intelligent platform designed to support disaster response through AI-powered incident analysis, risk assessment, resource optimization, and emergency coordination.",
-    image: "/images/projects/resourceflow-ai-v2.png",
     tags: ["Next.js", "AI/ML", "Full-Stack", "Tailwind CSS"],
     liveUrl: "https://resource-flowai.vercel.app",
     githubUrl: "", // ✏️ EDIT: add the GitHub repo URL when available
@@ -160,7 +159,6 @@ export const projects: Project[] = [
     tagline: "Full-Stack E-Commerce Web Application",
     description:
       "A modern e-commerce platform designed to provide a smooth online shopping experience — from browsing products to a seamless checkout flow.",
-    image: "/images/projects/bazaar-ecommerce.png",
     tags: ["React", "E-Commerce", "Full-Stack", "UI/UX"],
     liveUrl: "https://bazaar-e-commerce-4.vercel.app/",
     githubUrl: "", // ✏️ EDIT: add the GitHub repo URL when available
@@ -173,7 +171,8 @@ export interface EducationItem {
   title: string;
   field?: string;
   org: string;
-  period: string;
+  period?: string;
+  score?: string;
   icon: "graduation" | "school";
   current?: boolean;
 }
@@ -182,15 +181,23 @@ export const education: EducationItem[] = [
   {
     title: "B.Tech (Pursuing)",
     field: "Electronics and Communication Engineering (ECE)",
-    org: "[College Name]", // ✏️ EDIT: your college name
-    period: "[Academic Year]", // ✏️ EDIT: e.g. 2022 — 2026
+    org: "Annamacharya Institute of Technology and Sciences, Tirupati",
+    period: "Expected 2027",
+    score: "CGPA 7.5",
     icon: "graduation",
     current: true,
   },
   {
-    title: "Secondary Education",
-    org: "Z.P.H.S",
+    title: "Intermediate (Class XII)",
+    org: "Sri Sudha College, Dhone",
+    score: "81%",
+    icon: "school",
+  },
+  {
+    title: "Secondary School (Class X)",
+    org: "ZPHS Boys School, Peapully",
     period: "Passed in 2022",
+    score: "86%",
     icon: "school",
   },
 ];
