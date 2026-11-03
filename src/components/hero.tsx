@@ -236,7 +236,7 @@ export default function Hero() {
             custom={0.9}
             className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg"
           >
-            {siteConfig.description}
+            {siteConfig.tagline}
           </motion.p>
 
           {/* CTAs */}

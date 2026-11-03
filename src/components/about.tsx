@@ -53,6 +53,18 @@ export default function About() {
           }
         />
 
+        {/* Achievements stats band */}
+        <Reveal>
+          <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {about.achievements.map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 text-center">
+                <p className="font-display text-2xl font-bold text-white">{stat.value}</p>
+                <p className="mt-1 text-xs font-mono text-zinc-500">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* intro + highlight cards */}
           <div>
@@ -127,7 +139,7 @@ export default function About() {
                         {siteConfig.name}
                       </p>
                       <p className="mt-0.5 text-xs font-medium tracking-wide text-purple-300">
-                        B.Tech ECE · Class of 2027 · Full Stack Developer
+                        {about.portraitHeadline}
                       </p>
                     </div>
                   </div>

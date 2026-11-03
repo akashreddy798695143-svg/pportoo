@@ -8,6 +8,7 @@ import Projects from "@/components/projects";
 import Education from "@/components/education";
 import Experience from "@/components/experience";
 import Certifications from "@/components/certifications";
+import Resume from "@/components/resume";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
@@ -27,6 +28,7 @@ export default function Home() {
         <Education />
         <Experience />
         <Certifications />
+        <Resume />
         <Contact />
       </main>
 

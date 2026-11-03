@@ -45,7 +45,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-500">
-              {siteConfig.description}
+              {siteConfig.headline}
             </p>
             <div className="mt-6 flex items-center gap-3">
               {socials.map(({ label, href, Icon }) => (

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: `${siteConfig.name} — Full Stack Developer & AI Enthusiast`,
     template: `%s — ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: siteConfig.headline,
   keywords: [
     "Full Stack Developer",
     "Portfolio",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   openGraph: {
     title: `${siteConfig.name} — Full Stack Developer & AI Enthusiast`,
-    description: siteConfig.description,
+    description: siteConfig.headline,
     type: "website",
     siteName: siteConfig.name,
     locale: "en_US",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — Full Stack Developer & AI Enthusiast`,
-    description: siteConfig.description,
+    description: siteConfig.headline,
   },
   robots: {
     index: true,

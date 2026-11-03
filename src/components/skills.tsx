@@ -103,6 +103,18 @@ export default function Skills() {
                                 {skill.note}
                               </span>
                             ) : null}
+                            {skill.level ? (
+                              <span className={cn(
+                                "mt-1 inline-block rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+                                skill.level === "Advanced" || skill.level === "Expert"
+                                  ? "border border-emerald-400/30 bg-emerald-500/10 text-emerald-300"
+                                  : skill.level === "Intermediate"
+                                  ? "border border-amber-400/30 bg-amber-500/10 text-amber-300"
+                                  : "border border-zinc-400/30 bg-zinc-500/10 text-zinc-300"
+                              )}>
+                                {skill.level}
+                              </span>
+                            ) : null}
                           </div>
                         </div>
                       </TiltCard>

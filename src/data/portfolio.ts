@@ -21,10 +21,18 @@ export const siteConfig = {
   initials: "BA",
   /** ✏️ EDIT: your public site URL (used for SEO metadata) */
   url: "https://your-portfolio.vercel.app",
-  role: "Full Stack Developer | AI Enthusiast | Creative Problem Solver",
-  description:
-    "I transform ideas into interactive digital experiences through modern web technologies, creative development, and intelligent solutions.",
-  /** ✏️ EDIT: your email address */
+  role: "Full Stack Developer | AI Enthusiast",
+  headline:
+    "Building intelligent, user-centred web applications with modern full-stack technologies.",
+  tagline: "Passionate about AI & Full Stack Development",
+  summary:
+    "I am a B.Tech Computer Science student with hands-on experience building full-stack web applications and experimenting with AI-powered systems.",
+  achievements: [
+    { value: "2+", label: "Years of coding" },
+    { value: "5", label: "Web projects shipped" },
+    { value: "3", label: "Internships completed" },
+    { value: "9", label: "Technical skills" },
+  ],
   email: "your.email@example.com",
   /** ✏️ EDIT: your GitHub profile URL */
   github: "https://github.com/your-username",
@@ -35,7 +43,7 @@ export const siteConfig = {
    * this to "/resume.pdf" to enable the Download Resume button. While it is
    * empty, the button politely explains that the resume is coming soon.
    */
-  resumeUrl: "",
+  resumeUrl: "/resume.pdf",
 };
 
 /* ─────────────────────────────── About ──────────────────────────────── */
@@ -43,6 +51,7 @@ export const siteConfig = {
 export const about = {
   /** Professional portrait shown with a 3D animated frame in the About section */
   profileImage: "/images/profile.jpg",
+  portraitHeadline: "B.Tech ECE · Class of 2027 · Full Stack Developer",
   intro:
     "I am a passionate developer interested in building modern web applications and AI-powered solutions. I enjoy solving problems, learning new technologies, and creating meaningful digital experiences.",
   highlights: [
@@ -73,6 +82,13 @@ export const about = {
     { cmd: "focus", out: "web applications · AI-powered solutions" },
     { cmd: "status", out: "open to internships & opportunities" },
   ],
+  /** Featured achievements — appear in the About section's stats band */
+  achievements: [
+    { value: "2+", label: "Years of coding" },
+    { value: "5", label: "Web projects shipped" },
+    { value: "3", label: "Internships completed" },
+    { value: "9", label: "Technical skills" },
+  ],
 };
 
 /* ─────────────────────────────── Skills ─────────────────────────────── */
@@ -85,6 +101,8 @@ export interface Skill {
   icon: string;
   /** Optional qualifier, e.g. "Basics" — no fake percentage bars, ever. */
   note?: string;
+  /** ✏️ EDIT: professional skill level — "Beginner" | "Intermediate" | "Advanced" | "Expert" */
+  level?: "Beginner" | "Intermediate" | "Advanced" | "Expert";
 }
 
 export interface SkillGroup {
@@ -98,33 +116,33 @@ export const skillGroups: SkillGroup[] = [
     title: "Programming",
     accent: "purple",
     skills: [
-      { name: "Python", icon: "python" },
-      { name: "JavaScript", icon: "javascript" },
+      { name: "Python", icon: "python", level: "Intermediate" },
+      { name: "JavaScript", icon: "javascript", level: "Advanced" },
     ],
   },
   {
     title: "Frontend",
     accent: "cyan",
     skills: [
-      { name: "HTML", icon: "html" },
-      { name: "CSS", icon: "css" },
+      { name: "HTML", icon: "html", level: "Advanced" },
+      { name: "CSS", icon: "css", level: "Intermediate" },
     ],
   },
   {
     title: "Database",
     accent: "cyan",
     skills: [
-      { name: "SQL", icon: "sql" },
-      { name: "DBMS", icon: "dbms" },
+      { name: "SQL", icon: "sql", level: "Intermediate" },
+      { name: "DBMS", icon: "dbms", level: "Beginner" },
     ],
   },
   {
     title: "Computer Science",
     accent: "purple",
     skills: [
-      { name: "Data Structures & Algorithms", icon: "dsa", note: "Basics" },
-      { name: "Object-Oriented Programming", icon: "oop" },
-      { name: "Computer Networking", icon: "network" },
+      { name: "Data Structures & Algorithms", icon: "dsa", note: "Basics", level: "Intermediate" },
+      { name: "Object-Oriented Programming", icon: "oop", level: "Intermediate" },
+      { name: "Computer Networking", icon: "network", level: "Beginner" },
     ],
   },
 ];
@@ -272,5 +290,6 @@ export const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
   { label: "Experience", href: "#experience" },
+  { label: "Resume", href: "#resume" },
   { label: "Contact", href: "#contact" },
 ] as const;
